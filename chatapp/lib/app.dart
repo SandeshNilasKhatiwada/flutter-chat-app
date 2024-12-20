@@ -1,3 +1,4 @@
+import 'package:chatapp/core/app_theme/app_theme.dart';
 import 'package:chatapp/view/onbording_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -6,9 +7,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: OnboardingScreen(),
+      theme: getApplicationTheme(),
+      home: const OnboardingScreen(),
     );
   }
 }
