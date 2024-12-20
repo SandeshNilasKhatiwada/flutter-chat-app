@@ -1,3 +1,4 @@
+import 'package:chatapp/view/base_page.dart';
 import 'package:chatapp/view/sign_up.dart';
 import 'package:flutter/material.dart';
 
@@ -16,10 +17,7 @@ class LoginPage extends StatelessWidget {
             // Title
             const Text(
               'Log in to Chatbox',
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),
+              style: TextStyle(fontSize: 50, fontFamily: "Montserrat Bold"),
             ),
 
             const SizedBox(height: 10),
@@ -122,17 +120,22 @@ class LoginPage extends StatelessWidget {
             // Login Button
             ElevatedButton(
               onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const BasePage()));
                 // Handle login logic
               },
-              style: ElevatedButton.styleFrom(
-                minimumSize: const Size(double.infinity, 50),
-                backgroundColor: Colors.grey.shade200,
-                foregroundColor: Colors.black,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8),
-                ),
+              // style: ElevatedButton.styleFrom(
+              //   minimumSize: const Size(double.infinity, 50),
+              //   backgroundColor: Colors.grey.shade200,
+              //   foregroundColor: Colors.black,
+              //   shape: RoundedRectangleBorder(
+              //     borderRadius: BorderRadius.circular(8),
+              //   ),
+              // ),
+              child: const Text(
+                'Log in',
+                // style: TextStyle(fontFamily: "Montserrat Bold", fontSize: 20),
               ),
-              child: const Text('Log in'),
             ),
 
             const SizedBox(height: 10),
