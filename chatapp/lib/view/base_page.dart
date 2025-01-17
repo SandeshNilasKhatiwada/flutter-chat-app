@@ -47,15 +47,15 @@ class _BasePageState extends State<BasePage> {
         brightness: Brightness.light,
         primarySwatch: Colors.blue,
         scaffoldBackgroundColor: const Color.fromARGB(255, 246, 247, 248),
-        bottomNavigationBarTheme: BottomNavigationBarThemeData(
-          backgroundColor: const Color.fromARGB(255, 246, 247, 248),
-          selectedItemColor: const Color.fromARGB(255, 47, 36, 36),
-          unselectedItemColor: const Color.fromARGB(255, 116, 109, 109),
-          selectedLabelStyle: const TextStyle(
+        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+          backgroundColor: Color.fromARGB(255, 246, 247, 248),
+          selectedItemColor: Color.fromARGB(255, 47, 36, 36),
+          unselectedItemColor: Color.fromARGB(255, 116, 109, 109),
+          selectedLabelStyle: TextStyle(
             color: Color.fromARGB(255, 47, 36, 36),
             fontWeight: FontWeight.bold,
           ),
-          unselectedLabelStyle: const TextStyle(
+          unselectedLabelStyle: TextStyle(
             color: Color.fromARGB(255, 116, 109, 109),
           ),
         ),
@@ -64,15 +64,15 @@ class _BasePageState extends State<BasePage> {
         brightness: Brightness.dark,
         primarySwatch: Colors.blueGrey,
         scaffoldBackgroundColor: const Color.fromARGB(255, 33, 33, 33),
-        bottomNavigationBarTheme: BottomNavigationBarThemeData(
-          backgroundColor: const Color.fromARGB(255, 44, 44, 44),
-          selectedItemColor: const Color.fromARGB(255, 255, 255, 255),
-          unselectedItemColor: const Color.fromARGB(255, 158, 158, 158),
-          selectedLabelStyle: const TextStyle(
+        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+          backgroundColor: Color.fromARGB(255, 44, 44, 44),
+          selectedItemColor: Color.fromARGB(255, 255, 255, 255),
+          unselectedItemColor: Color.fromARGB(255, 158, 158, 158),
+          selectedLabelStyle: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.bold,
           ),
-          unselectedLabelStyle: const TextStyle(
+          unselectedLabelStyle: TextStyle(
             color: Color.fromARGB(255, 158, 158, 158),
           ),
         ),

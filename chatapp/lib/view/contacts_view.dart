@@ -5,7 +5,7 @@ class ContactsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return const Center(
       child: Text(
         'Contacts Page',
         style: TextStyle(fontSize: 24),
