@@ -1,7 +1,6 @@
 import 'package:chatapp/intro_screen/intro_page_1.dart';
 import 'package:chatapp/intro_screen/intro_page_2.dart';
 import 'package:chatapp/intro_screen/intro_page_3.dart';
-import 'package:chatapp/view/home_page.dart';
 import 'package:chatapp/view/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';

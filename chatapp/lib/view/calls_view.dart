@@ -29,7 +29,7 @@ class CallPage extends StatelessWidget {
               ),
               itemBuilder: (context, index) {
                 return ListTile(
-                  leading: CircleAvatar(
+                  leading: const CircleAvatar(
                     radius: 28,
                     backgroundImage: NetworkImage(
                         'https://cdn.pixabay.com/photo/2016/11/21/12/42/beard-1845166_1280.jpg'),
@@ -66,8 +66,8 @@ class CallPage extends StatelessWidget {
                           fontSize: 12,
                         ),
                       ),
-                      SizedBox(height: 5),
-                      CircleAvatar(
+                      const SizedBox(height: 5),
+                      const CircleAvatar(
                         radius: 10,
                         backgroundColor: Colors.red,
                         child: Text(

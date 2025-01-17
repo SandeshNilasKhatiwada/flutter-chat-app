@@ -1,9 +1,58 @@
+import 'package:chatapp/service/hive_service.dart';
 import 'package:chatapp/view/base_page.dart';
 import 'package:chatapp/view/sign_up.dart';
 import 'package:flutter/material.dart';
+import 'package:chatapp/model/user.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
+
+  @override
+  _LoginPageState createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  // Controllers to capture input data
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final HiveService _hiveService = HiveService();
+
+  // Show an alert if login failed
+  void _showLoginError() {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Login Failed'),
+        content: const Text('Invalid email or password. Please try again.'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: const Text('OK'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  // Handle login process
+  Future<void> _handleLogin() async {
+    final email = _emailController.text;
+    final password = _passwordController.text;
+
+    // Authenticate the user by checking Hive
+    bool isAuthenticated = await _hiveService.authenticateUser(email, password);
+
+    if (isAuthenticated) {
+      // Navigate to the base page if credentials are correct
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const BasePage()),
+      );
+    } else {
+      // Show an error message if login failed
+      _showLoginError();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +68,6 @@ class LoginPage extends StatelessWidget {
               'Log in to Chatbox',
               style: TextStyle(fontSize: 50, fontFamily: "Montserrat Bold"),
             ),
-
             const SizedBox(height: 10),
 
             // Subtitle
@@ -31,69 +79,11 @@ class LoginPage extends StatelessWidget {
                 color: Colors.grey,
               ),
             ),
-
-            const SizedBox(height: 20),
-
-            // Social Media Buttons
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                CircleAvatar(
-                  radius: 20,
-                  backgroundColor: Colors.grey.shade200,
-                  child: IconButton(
-                    icon: const Icon(Icons.facebook, color: Colors.blue),
-                    onPressed: () {
-                      // Facebook login logic
-                    },
-                  ),
-                ),
-                const SizedBox(width: 20),
-                CircleAvatar(
-                  radius: 20,
-                  backgroundColor: Colors.grey.shade200,
-                  child: IconButton(
-                    icon: const Icon(Icons.g_mobiledata, color: Colors.red),
-                    onPressed: () {
-                      // Google login logic
-                    },
-                  ),
-                ),
-                const SizedBox(width: 20),
-                CircleAvatar(
-                  radius: 20,
-                  backgroundColor: Colors.grey.shade200,
-                  child: IconButton(
-                    icon: const Icon(Icons.apple, color: Colors.black),
-                    onPressed: () {
-                      // Apple login logic
-                    },
-                  ),
-                ),
-              ],
-            ),
-
-            const SizedBox(height: 20),
-
-            // OR separator
-            const Row(
-              children: [
-                Expanded(child: Divider(thickness: 1)),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 8.0),
-                  child: Text(
-                    'OR',
-                    style: TextStyle(color: Colors.grey),
-                  ),
-                ),
-                Expanded(child: Divider(thickness: 1)),
-              ],
-            ),
-
             const SizedBox(height: 20),
 
             // Email TextField
             TextField(
+              controller: _emailController,
               decoration: InputDecoration(
                 labelText: 'Your email',
                 border: OutlineInputBorder(
@@ -101,11 +91,11 @@ class LoginPage extends StatelessWidget {
                 ),
               ),
             ),
-
             const SizedBox(height: 10),
 
             // Password TextField
             TextField(
+              controller: _passwordController,
               obscureText: true,
               decoration: InputDecoration(
                 labelText: 'Password',
@@ -114,30 +104,15 @@ class LoginPage extends StatelessWidget {
                 ),
               ),
             ),
-
             const SizedBox(height: 20),
 
             // Login Button
             ElevatedButton(
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const BasePage()));
-                // Handle login logic
-              },
-              // style: ElevatedButton.styleFrom(
-              //   minimumSize: const Size(double.infinity, 50),
-              //   backgroundColor: Colors.grey.shade200,
-              //   foregroundColor: Colors.black,
-              //   shape: RoundedRectangleBorder(
-              //     borderRadius: BorderRadius.circular(8),
-              //   ),
-              // ),
+              onPressed: _handleLogin,
               child: const Text(
                 'Log in',
-                // style: TextStyle(fontFamily: "Montserrat Bold", fontSize: 20),
               ),
             ),
-
             const SizedBox(height: 10),
 
             // Forgot Password
