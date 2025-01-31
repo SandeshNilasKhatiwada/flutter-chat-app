@@ -1,19 +1,23 @@
-import 'package:chatapp/app.dart';
-import 'package:chatapp/model/user.dart';
 import 'package:flutter/material.dart';
-import 'package:hive_flutter/hive_flutter.dart';
+import 'features/auth/presentation/pages/register_page.dart';
+import 'features/auth/presentation/pages/login_page.dart';
 
-Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+void main() {
+  runApp(MyApp());
+}
 
-  // Initialize Hive
-  await Hive.initFlutter();
-
-  // Register the Hive adapter for User
-  Hive.registerAdapter(UserAdapter());
-
-  // Open the box to ensure it is ready for use
-  await Hive.openBox<User>('users'); // Opening the users box here
-
-  runApp(const MyApp());
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Auth UI',
+      theme: ThemeData(primarySwatch: Colors.blue),
+      initialRoute: '/login', // Set initial screen to Register
+      routes: {
+        '/register': (context) => RegisterPage(),
+        '/login': (context) => LoginPage(),
+      },
+    );
+  }
 }

@@ -2,7 +2,6 @@ import 'package:chatapp/service/hive_service.dart';
 import 'package:chatapp/view/base_page.dart';
 import 'package:chatapp/view/sign_up.dart';
 import 'package:flutter/material.dart';
-import 'package:chatapp/model/user.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});

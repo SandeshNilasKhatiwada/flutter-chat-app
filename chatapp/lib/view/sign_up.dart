@@ -125,12 +125,10 @@ class _SignUpPageState extends State<SignUpPage> {
                       firstDate: DateTime(1900),
                       lastDate: DateTime.now(),
                     );
-                    if (pickedDate != null) {
-                      setState(() {
-                        _dobController.text = "${pickedDate.toLocal()}"
-                            .split(' ')[0]; // Format: yyyy-mm-dd
-                      });
-                    }
+                    setState(() {
+                      _dobController.text = "${pickedDate?.toLocal()}"
+                          .split(' ')[0]; // Format: yyyy-mm-dd
+                    });
                   },
                 ),
                 const SizedBox(height: 20),
