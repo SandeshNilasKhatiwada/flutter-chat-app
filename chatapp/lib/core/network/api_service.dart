@@ -4,7 +4,7 @@ class ApiService {
   final Dio dio;
 
   ApiService(this.dio) {
-    dio.options.baseUrl = "http://your_api_url_here/api/auth";
+    dio.options.baseUrl = "http://localhost:5000";
     dio.options.headers = {'Content-Type': 'application/json'};
 
     // Add Logging Interceptor
@@ -18,7 +18,10 @@ class ApiService {
         print("🟢 [RESPONSE] ${response.statusCode} ${response.data}");
         return handler.next(response);
       },
-      onError: (DioError e, handler) {
+      onError: (DioException e, handler) {
+        if (e.response?.statusCode == 401) {
+          return handler.resolve(e.response!);
+        }
         print("🔴 [ERROR] ${e.response?.statusCode} ${e.response?.data}");
         return handler.next(e);
       },
