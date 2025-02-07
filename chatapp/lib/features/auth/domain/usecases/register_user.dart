@@ -1,3 +1,5 @@
+import 'package:fpdart/fpdart.dart';
+
 import '../entities/user.dart';
 import '../repositories/auth_repository.dart';
 
@@ -6,7 +8,7 @@ class RegisterUser {
 
   RegisterUser(this.repository);
 
-  Future<String> call(User user) async {
+  Future<Either<String, String>> call(User user) async {
     return await repository.registerUser(user);
   }
 }
